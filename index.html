@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stu Perry Therapeutic Coaching</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --stone: #f5f2ee;
+      --warm-white: #faf8f5;
+      --ink: #1c1a18;
+      --mist: #8a8680;
+      --sage: #7a8c7e;
+      --rust: #9e6b4a;
+      --border: #e2ddd8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--warm-white);
+      color: var(--ink);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(250,248,245,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s ease;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mist);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 6rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 4vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--rust);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--mist);
+      max-width: 420px;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.6s forwards;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 0.25rem;
+      width: fit-content;
+      transition: gap 0.3s ease, color 0.2s;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.8s forwards;
+    }
+
+    .hero-cta:hover { gap: 1.25rem; color: var(--rust); border-color: var(--rust); }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 1.2s ease 0.3s forwards;
+    }
+
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(122,140,126,0.15) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .hero-image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #d4cfc8 0%, #bdb8b0 50%, #a8a39b 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.5);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      letter-spacing: 0.05em;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 7rem 6rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+    }
+
+    .section-title em { font-style: italic; color: var(--rust); }
+
+    /* ABOUT */
+    #about {
+      background: var(--stone);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: #4a4743;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .about-quote {
+      border-left: 2px solid var(--rust);
+      padding-left: 2rem;
+      margin: 3rem 0;
+    }
+
+    .about-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+
+    .credentials {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .credential {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--mist);
+      letter-spacing: 0.05em;
+    }
+
+    .credential::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sage);
+      flex-shrink: 0;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-visual-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      position: relative;
+    }
+
+    .about-visual-card::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      right: 12px;
+      bottom: 12px;
+      border: 1px solid var(--border);
+      z-index: -1;
+    }
+
+    .about-visual-card p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+
+    .about-visual-card cite {
+      display: block;
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mist);
+      font-style: normal;
+    }
+
+    /* OFFER */
+    #offer {
+      background: var(--warm-white);
+    }
+
+    .offer-intro {
+      max-width: 680px;
+      color: #4a4743;
+      margin-bottom: 4rem;
+      font-size: 1rem;
+    }
+
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      margin-bottom: 4rem;
+    }
+
+    .offer-card {
+      background: var(--warm-white);
+      padding: 3rem 2.5rem;
+      transition: background 0.3s ease;
+    }
+
+    .offer-card:hover { background: var(--stone); }
+
+    .offer-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .offer-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+
+    .offer-card p {
+      font-size: 0.9rem;
+      color: var(--mist);
+      line-height: 1.7;
+    }
+
+    .modalities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .modality-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--border);
+      color: var(--mist);
+      background: transparent;
+      transition: all 0.2s;
+    }
+
+    .modality-tag:hover {
+      border-color: var(--sage);
+      color: var(--sage);
+    }
+
+    /* WHO */
+    #who {
+      background: var(--ink);
+      color: var(--warm-white);
+    }
+
+    #who .section-label { color: var(--sage); }
+
+    #who .section-title { color: var(--warm-white); }
+
+    .who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .who-text p {
+      color: rgba(250,248,245,0.65);
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .who-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .who-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 0.95rem;
+      color: rgba(250,248,245,0.75);
+    }
+
+    .who-list li::before {
+      content: '—';
+      color: var(--rust);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .who-statement {
+      border-top: 1px solid rgba(250,248,245,0.1);
+      padding-top: 3rem;
+      margin-top: 3rem;
+    }
+
+    .who-statement p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--warm-white);
+    }
+
+    /* TESTIMONIALS */
+    #testimonials {
+      background: var(--stone);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 1100px) {
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .testimonial {
+      padding: 2.5rem;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: '\201C';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: var(--border);
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+      line-height: 1;
+    }
+
+    .testimonial p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--ink);
+      margin-top: 1.5rem;
+    }
+
+    .testimonial cite {
+      display: block;
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mist);
+      font-style: normal;
+    }
+
+    /* CONTACT */
+    #contact {
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-text p {
+      color: #4a4743;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      max-width: 440px;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .contact-method-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-method-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--sage);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .contact-method-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mist);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-method-value {
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    .contact-method-value a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .contact-method-value a:hover { border-color: var(--rust); color: var(--rust); }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mist);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 0;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--sage);
+    }
+
+    .form-group textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    .form-group select {
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-white);
+      background: var(--ink);
+      border: none;
+      padding: 1.1rem 2.5rem;
+      cursor: pointer;
+      transition: background 0.3s, gap 0.3s;
+      width: fit-content;
+    }
+
+    .form-submit:hover { background: var(--rust); gap: 1.25rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      padding: 3rem 6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: rgba(250,248,245,0.6);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-text {
+      font-size: 0.75rem;
+      color: rgba(250,248,245,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 2rem; }
+      .nav-links { gap: 1.5rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-text { padding: 5rem 2rem 3rem; }
+      .hero-image { height: 50vh; }
+      section { padding: 5rem 2rem; }
+      #about, #who-grid, #contact { grid-template-columns: 1fr; gap: 3rem; }
+      .who-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .offer-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Stu Perry</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#offer">Approach</a></li>
+      <li><a href="#who">Who I Work With</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Therapeutic Coaching · Harrogate</p>
+      <h1 class="hero-title">
+        A space to stop<br/>
+        <em>performing</em><br/>
+        and start healing
+      </h1>
+      <p class="hero-sub">
+        For professionals who are capable on the outside and exhausted underneath. 
+        Specialising in burnout, chronic fatigue, and Long Covid recovery.
+      </p>
+      <a href="#contact" class="hero-cta">Begin a conversation →</a>
+    </div>
+    <div class="hero-image">
+      <img src="photo.jpg" alt="Stu Perry" />
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-text reveal">
+      <p class="section-label">About</p>
+      <h2 class="section-title">Lived experience.<br/><em>Genuine</em> transformation.</h2>
+      <p>I work with professionals who've given everything to their careers and found themselves running on empty — navigating burnout, chronic fatigue, Long Covid, or the quiet erosion of energy and joy that comes from years of pushing through.</p>
+      <p>My own journey through Long Covid recovery taught me what it's like to lose your baseline — the energy, clarity, and resilience you once took for granted. Recovery wasn't just about getting better. It was about learning to listen to my body, process what I'd been carrying, and rebuild from a more grounded, sustainable foundation.</p>
+      <p>That lived experience shapes how I work. I don't approach burnout or fatigue as problems to fix or productivity gaps to optimise. I see them as your nervous system asking — sometimes demanding — that you slow down, feel what's been suppressed, and reconnect with yourself beneath the performance.</p>
+
+      <div class="about-quote">
+        <p>"If you're reading this, you might recognise that feeling: capable on the outside, exhausted underneath. Still showing up, still performing, but knowing something fundamental needs to change."</p>
+      </div>
+
+      <div class="credentials">
+        <div class="credential">Qualified Therapeutic Coach</div>
+        <div class="credential">EFT (Emotional Freedom Techniques) Practitioner</div>
+        <div class="credential">NLP Practitioner</div>
+        <div class="credential">Hypnotherapy Practitioner</div>
+        <div class="credential">Corporate Wellbeing Specialist</div>
+        <div class="credential">Based in Harrogate, North Yorkshire</div>
+      </div>
+    </div>
+
+    <div class="about-visual reveal">
+      <div class="about-visual-card">
+        <p>"Stu has a deep and pure gift of listening. This, paired with his ability to reflect back what I uncovered during our sessions, really helped solidify the transformation I experienced during our time together."</p>
+        <cite>— Julie Smith</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFER -->
+  <section id="offer">
+    <p class="section-label reveal">How I Work</p>
+    <h2 class="section-title reveal">Not fixing. <em>Accompanying.</em></h2>
+    <p class="offer-intro reveal">My approach is rooted in creating genuinely safe space. I work primarily through deep listening and skilful questions that help you uncover your own insights rather than imposing external solutions.</p>
+
+    <div class="offer-grid reveal">
+      <div class="offer-card">
+        <div class="offer-number">01</div>
+        <h3>Deep Listening</h3>
+        <p>Sessions built around genuine presence rather than technique. A space where you can stop managing how you appear and be honest about what's actually happening.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-number">02</div>
+        <h3>Pattern Recognition</h3>
+        <p>We explore the patterns keeping you stuck — over-functioning, the inability to rest, emotional suppression so automatic you've stopped noticing it. Understanding is the beginning of change.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-number">03</div>
+        <h3>Somatic Integration</h3>
+        <p>I integrate EFT, NLP, and Hypnotherapy — woven naturally into our work rather than applied as standalone tools. EFT offers a gentle way to process emotions held in the body for years.</p>
+      </div>
+    </div>
+
+    <div class="modalities reveal">
+      <span class="modality-tag">EFT Tapping</span>
+      <span class="modality-tag">NLP</span>
+      <span class="modality-tag">Hypnotherapy</span>
+      <span class="modality-tag">Somatic Work</span>
+      <span class="modality-tag">Parts Work</span>
+      <span class="modality-tag">Burnout Recovery</span>
+      <span class="modality-tag">Long Covid</span>
+      <span class="modality-tag">Chronic Fatigue</span>
+      <span class="modality-tag">Corporate Wellbeing</span>
+    </div>
+  </section>
+
+  <!-- WHO -->
+  <section id="who">
+    <div class="who-grid">
+      <div class="who-text reveal">
+        <p class="section-label">Who I Work With</p>
+        <h2 class="section-title">People who are <em>ready</em> for something different.</h2>
+        <p>I specialise in working with professionals — people in leadership, demanding careers, or high-responsibility roles who've spent years prioritising everyone else's needs while neglecting their own.</p>
+        <p>You're competent, capable, and exhausted. You've tried willpower, productivity systems, and pushing through. Now you're ready for something different.</p>
+      </div>
+
+      <div class="reveal">
+        <ul class="who-list">
+          <li>Recovering from burnout or chronic fatigue and struggling to find your baseline again</li>
+          <li>Navigating Long Covid and the loss of energy, clarity and resilience you once took for granted</li>
+          <li>High-functioning but aware that something fundamental needs to change</li>
+          <li>Carrying years of suppressed emotion beneath a capable exterior</li>
+          <li>Ready to stop performing and start showing up as yourself</li>
+          <li>A leader who wants to lead from presence rather than pressure</li>
+        </ul>
+
+        <div class="who-statement">
+          <p>"Recovery isn't about returning to who you were before you burnt out. It's about becoming someone more whole — present, grounded, able to feel and rest and show up authentically."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <p class="section-label reveal">Testimonials</p>
+    <h2 class="section-title reveal">What clients <em>say.</em></h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial reveal">
+        <p>Stu has a unique natural ability to hold space with understanding and compassion — I felt heard in a way I haven't before. He has equipped me with tools that have impacted my life positively and I have gained clarity to move forward.</p>
+        <cite>— Fern Whittaker</cite>
+      </div>
+      <div class="testimonial reveal">
+        <p>I feel incredibly fortunate to have worked with Stu. His warmth and genuine curiosity made it easy to trust him completely. Through our session I found myself connecting more deeply with my inner self, accessing a profound sense of peace and gratitude.</p>
+        <cite>— Monika Lidke</cite>
+      </div>
+      <div class="testimonial reveal">
+        <p>If you are looking for someone who will truly witness where you're at, you've found your coach. Stu has a deep and pure gift of listening. His 1:1 coaching has been an incredible blessing to me.</p>
+        <cite>— Julie Smith</cite>
+      </div>
+      <div class="testimonial reveal">
+        <p>Working with Stuart felt very safe — not something I feel when starting to work with someone new. He has a very calming, curious and non-judgemental energy. I would recommend working with Stuart; it's a transformative experience.</p>
+        <cite>— Victoria Dalton</cite>
+      </div>
+      <div class="testimonial reveal">
+        <p>Stu put me at ease very quickly and helped me with tools to calm my fears and nervous system, giving me space to live more freely. He made such a difference to me and my CFS recovery journey.</p>
+        <cite>— Michelle Stuchbury</cite>
+      </div>
+      <div class="testimonial reveal">
+        <p>I would highly recommend Stu. He was extremely insightful and thoughtful throughout our work on my Long Covid recovery. The resources I learnt were invaluable — I felt in very safe hands.</p>
+        <cite>— Tori Evans</cite>
+      </div>
+      <div class="testimonial reveal">
+        <p>Stu has a lovely relaxed and professional presence which helps create a calm and safe environment. He asks skilful, quality questions which raised my awareness around parts of myself. I love how he threads EFT within the therapeutic sessions.</p>
+        <cite>— Sue John</cite>
+      </div>
+      <div class="testimonial reveal">
+        <p>Being coached by Stu was both positive and eye-opening. He made me feel comfortable right from the start and quickly helped me uncover the areas to focus on. Our sessions led to real, meaningful change.</p>
+        <cite>— Lucy Gardner</cite>
+      </div>
+      <div class="testimonial reveal">
+        <p>Stu is a compassionate and insightful coach. The techniques he taught me, including EFT, have been helpful not only in dealing with anxiety and stress but also in looking more deeply at the root cause of these issues.</p>
+        <cite>— Jilly H</cite>
+      </div>
+      <div class="testimonial reveal">
+        <p>His compassion and warmth shone through, and I felt very safe and comfortable working with him. I felt both seen and heard. I have got some good actionable steps to take and more confidence to take them on.</p>
+        <cite>— Philippa Walker</cite>
+      </div>
+      <div class="testimonial reveal">
+        <p>Working with Stu was really eye opening. He helped me unravel the pieces and find what was important and how to move forward. Really insightful and useful.</p>
+        <cite>— Janine Gratrix</cite>
+      </div>
+      <div class="testimonial reveal">
+        <p>I gained powerful new insights very quickly through Stu's careful listening and skilful replaying. I felt very comfortable with Stu as my coach.</p>
+        <cite>— Elise Holmes</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-text reveal">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Begin a <em>conversation.</em></h2>
+      <p>If something here has resonated, I'd be honoured to hear from you. There's no obligation — just a conversation to explore whether working together feels right.</p>
+      <p>I work with a small number of clients at any one time, which means sessions are genuinely focused and unhurried.</p>
+
+      <div class="contact-methods">
+        <div class="contact-method">
+          <div class="contact-method-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-method-label">Email</div>
+            <div class="contact-method-value"><a href="/cdn-cgi/l/email-protection#0f7c7b7a6e7d7b657f6a7d7d764f67607b626e6663216c6062"><span class="__cf_email__" data-cfemail="473433322635332d372235353e072f28332a262e2b6924282a">[email&#160;protected]</span></a></div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-method-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-method-label">WhatsApp</div>
+            <div class="contact-method-value"><a href="https://api.whatsapp.com/send?phone=4407970297639">Message me directly</a></div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-method-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-method-label">Location</div>
+            <div class="contact-method-value">Harrogate, North Yorkshire<br/>Sessions online and in person</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <form action="mailto:stuartjperry@hotmail.com" method="post" enctype="text/plain">
+        <div class="contact-form">
+          <div class="form-group">
+            <label>Your name</label>
+            <input type="text" name="name" placeholder="First and last name" />
+          </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" name="email" placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label>What brings you here</label>
+            <select name="reason">
+              <option value="">Select one</option>
+              <option>Burnout recovery</option>
+              <option>Chronic fatigue or Long Covid</option>
+              <option>General wellbeing and self-development</option>
+              <option>Corporate wellbeing enquiry</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>A little about what you're going through</label>
+            <textarea name="message" placeholder="No need to have it figured out. Just share what feels relevant."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send message →</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Stu Perry Therapeutic Coaching</div>
+    <div class="footer-text">Harrogate, North Yorkshire · Online & In Person</div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observ
