@@ -612,7 +612,7 @@
       color: var(--ink);
     }
 
-    .article-card p {
+    .article-card > p {
       font-size: 0.8rem;
       color: var(--mist);
       letter-spacing: 0.05em;
@@ -620,6 +620,85 @@
       margin-top: auto;
       padding-top: 1rem;
       border-top: 1px solid var(--border);
+    }
+
+    .article-body {
+      display: none;
+      margin-top: 1rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .article-card.open .article-body {
+      display: block;
+    }
+
+    .article-body p {
+      font-size: 0.95rem;
+      color: #4a4743;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .article-body strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .article-body em {
+      font-style: italic;
+    }
+
+    .article-body ol {
+      margin: 0.5rem 0 1rem 1.5rem;
+    }
+
+    .article-body ol li {
+      font-size: 0.95rem;
+      color: #4a4743;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+    }
+
+    .article-cta {
+      margin-top: 1.5rem !important;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem !important;
+      color: var(--mist) !important;
+      font-style: italic;
+    }
+
+    .article-cta a {
+      color: var(--rust);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rust);
+    }
+
+    .article-cta a:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    .article-toggle {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rust);
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+    }
+
+    .article-toggle:hover {
+      color: var(--ink);
     }
 
     @media (max-width: 768px) {
@@ -1225,24 +1304,76 @@
     <p class="section-label reveal">Articles</p>
     <h2 class="section-title reveal">Thoughts on burnout,<br/>fatigue & finding yourself again.</h2>
     <p class="reveal" style="max-width: 600px; margin-top: 1.5rem; font-size: 1rem; color: var(--mist); line-height: 1.8;">
-      I write about emotional exhaustion, recovery, and what it actually looks like to reconnect with yourself after years of pushing through. Articles coming soon.
+      I write about emotional exhaustion, recovery, and what it actually looks like to reconnect with yourself after years of pushing through.
     </p>
     <div class="articles-grid reveal">
+
       <div class="article-card">
         <p class="article-tag">Burnout</p>
-        <h3>Why high-achievers are often the last to admit they're burning out</h3>
-        <p>Coming soon</p>
+        <h3>Burnout vs Tiredness: How To Tell The Difference</h3>
+        <button class="article-toggle" onclick="toggleArticle(this)">Read article →</button>
+        <div class="article-body">
+          <p>We all get tired. A demanding week at work, a run of broken nights, a busy family schedule — normal tiredness has an obvious cause and a straightforward solution. Sleep. Rest. A slower weekend.</p>
+          <p>Burnout is different.</p>
+          <p>Burnout doesn't lift after a good night's sleep. It doesn't respond to a holiday the way you hope it will. You come back from two weeks away feeling briefly better, then find yourself back in the same fog within days. Rest helps temporarily but nothing fully restores you.</p>
+          <p>The key differences: <em>Tiredness</em> has a clear cause, improves with rest, and feels physical. You know why you're exhausted and you know what you need. <em>Burnout</em> feels deeper — a flatness, a disconnection, a growing sense that something fundamental has shifted. Energy returns briefly then drains again. Motivation disappears even for things you used to enjoy. You might feel increasingly detached, cynical, or emotionally numb.</p>
+          <p><strong>Three questions worth asking yourself:</strong></p>
+          <ol>
+            <li>Does rest actually restore me, or do I just feel slightly less exhausted?</li>
+            <li>Am I losing enjoyment in things that used to matter to me?</li>
+            <li>Does my tiredness feel physical, or does it feel like something deeper — like I'm running on empty at a level sleep can't reach?</li>
+          </ol>
+          <p>If the answer to those questions points toward something more than ordinary tiredness, it's worth paying attention.</p>
+          <p>Burnout rarely arrives suddenly. It builds slowly, often in people who are highly capable, conscientious, and committed — people who push through long after their body and nervous system are asking them to stop.</p>
+          <p>The good news: burnout is recoverable. But recovery requires more than rest. It requires understanding what drove you to that point, learning to recognise your early warning signs, and building a genuinely sustainable relationship with work, rest, and your own limits.</p>
+          <p>That's exactly the work therapeutic coaching can support.</p>
+          <p class="article-cta">If this resonates, <a href="#contact">get in touch</a>. I work with professionals navigating burnout, chronic fatigue, and Long Covid recovery — helping you understand what's happening and find your way back to yourself.</p>
+        </div>
       </div>
+
+      <div class="article-card">
+        <p class="article-tag">Coaching</p>
+        <h3>What Is Therapeutic Coaching — And How Is It Different From Therapy or Life Coaching?</h3>
+        <button class="article-toggle" onclick="toggleArticle(this)">Read article →</button>
+        <div class="article-body">
+          <p>If you've ever looked into getting support and found yourself confused by the options — therapy, counselling, life coaching, therapeutic coaching — you're not alone. The distinctions matter, because the right kind of support depends entirely on what you actually need.</p>
+          <p><strong>Therapy and counselling</strong> typically focus on mental health, psychological difficulties, and past experiences that are affecting your present. A therapist is trained to work with trauma, anxiety, depression, and clinical presentations. It's invaluable work — but it has a particular focus and a clinical framework.</p>
+          <p><strong>Life coaching</strong> focuses on goals, performance, and the future. Where are you going? What's stopping you? How do you get there? It tends to be forward-facing, practical, and action-oriented.</p>
+          <p><strong>Therapeutic coaching</strong> sits in between — and draws from both.</p>
+          <p>It's goal-oriented like coaching, but it doesn't ignore the emotional and psychological patterns that shape your behaviour, your choices, and your capacity to change. It recognises that sustainable change rarely comes from action plans alone. Sometimes what's holding you back isn't a lack of strategy. It's something deeper — a pattern, a belief, a nervous system that's been in survival mode for longer than you realise.</p>
+          <p><strong>Who is it for?</strong></p>
+          <p>Therapeutic coaching tends to suit people who are broadly functioning — working, managing life — but who know something isn't right. They're not in crisis, but they're not thriving either. They want practical support and real change, but they also want to understand themselves better in the process.</p>
+          <p>It's particularly useful for professionals navigating burnout, chronic fatigue, or Long Covid recovery — where the physical, emotional, and psychological are deeply intertwined and can't easily be separated.</p>
+          <p><strong>What does it actually involve?</strong></p>
+          <p>Sessions typically combine deep listening, skilful questioning, and evidence-based techniques — including EFT (Emotional Freedom Techniques), NLP, and Hypnotherapy — woven naturally into conversation rather than applied mechanically.</p>
+          <p>The goal isn't to fix you. It's to help you understand what's happening, access your own resources, and build something more sustainable.</p>
+          <p class="article-cta">If you're wondering whether therapeutic coaching might be right for you, <a href="#contact">feel free to get in touch</a> for an initial conversation.</p>
+        </div>
+      </div>
+
       <div class="article-card">
         <p class="article-tag">Recovery</p>
-        <h3>The difference between rest and recovery</h3>
-        <p>Coming soon</p>
+        <h3>Why High-Achieving Professionals Struggle To Rest</h3>
+        <button class="article-toggle" onclick="toggleArticle(this)">Read article →</button>
+        <div class="article-body">
+          <p>You've cleared the week. The weekend is finally here. You sit down — and immediately feel restless, guilty, or vaguely anxious. You pick up your phone. You think of something that needs doing. You tell yourself you'll relax once you've just sorted that one thing.</p>
+          <p>Sound familiar?</p>
+          <p>For high-achieving professionals, rest is often surprisingly difficult. Not because they don't want it — but because somewhere along the way, they've learned to associate stillness with danger.</p>
+          <p><strong>The productivity identity</strong></p>
+          <p>Many driven professionals have built their sense of self around capability and output. Being busy feels safe. Being productive feels like evidence of worth. Rest, by contrast, can feel uncomfortably close to laziness — or worse, irrelevance.</p>
+          <p>This isn't a character flaw. It's usually a deeply ingrained pattern, often developed early, that got reinforced by years of reward for performance and output.</p>
+          <p><strong>The nervous system piece</strong></p>
+          <p>There's also a physiological dimension that often gets overlooked.</p>
+          <p>After sustained periods of stress, the nervous system can become so accustomed to high alert that downregulation — actually switching off — becomes genuinely difficult. Rest stops feeling restful. Holidays don't fully restore. The body doesn't know how to be still because stillness has become unfamiliar, even threatening.</p>
+          <p>This is particularly common in burnout and Long Covid recovery, where the nervous system has been under prolonged pressure and needs active support to find its way back to genuine rest.</p>
+          <p><strong>What actually helps</strong></p>
+          <p>The solution isn't usually more willpower or better time management. It's understanding the pattern underneath — why rest feels uncomfortable, what it triggers, and how to gradually rebuild a genuine relationship with stillness.</p>
+          <p>That often involves slowing down intentionally (before you're forced to), learning to notice early warning signs in the body, and developing practices that genuinely regulate the nervous system rather than simply filling time differently.</p>
+          <p>Rest isn't a reward for finishing everything. It's a biological necessity — and for many high-achieving professionals, learning to actually rest is some of the most important work they'll do.</p>
+          <p class="article-cta">This is work I support clients with directly. <a href="#contact">If it resonates, get in touch.</a></p>
+        </div>
       </div>
-      <div class="article-card">
-        <p class="article-tag">Emotional Health</p>
-        <h3>What I learned about emotional exhaustion that nobody told me</h3>
-        <p>Coming soon</p>
-      </div>
+
     </div>
   </section>
 
@@ -1317,6 +1448,14 @@
   </footer>
 
   <script>
+    // Article toggle
+    function toggleArticle(btn) {
+      const card = btn.closest('.article-card');
+      const isOpen = card.classList.contains('open');
+      card.classList.toggle('open');
+      btn.textContent = isOpen ? 'Read article →' : 'Close ←';
+    }
+
     // Formspree AJAX submission
     const contactForm = document.querySelector('form[action*="formspree"]');
     const submitBtn = document.getElementById('submit-btn');
